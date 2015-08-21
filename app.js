@@ -17,7 +17,8 @@ app.get('/auth', function(req, res){
 			res.end();
 		} else {
 			var data = JSON.parse(data);
-			res.send(data.token);
+			res.type('json');
+			res.send(data);
 			res.end();
 		}
 	});
