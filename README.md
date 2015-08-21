@@ -1,8 +1,7 @@
 ## geogenerator
 Project to help with generating sample or testing geometry. 
+
 Built on top of [Leaflet](http://leafletjs.com/) and [Twitter Bootstrap](http://getbootstrap.com/).
-
-
 
 node dependencies:
 * [Express](http://expressjs.com/4x/api.html)
