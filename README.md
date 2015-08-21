@@ -1,5 +1,6 @@
 ## geogenerator
-Project to help with generating sample or testing geometry. Built on top of [Leaflet](http://leafletjs.com/) and [Twitter Bootstrap](http://getbootstrap.com/).
+Project to help with generating sample or testing geometry. 
+Built on top of [Leaflet](http://leafletjs.com/) and [Twitter Bootstrap](http://getbootstrap.com/).
 
 
 
