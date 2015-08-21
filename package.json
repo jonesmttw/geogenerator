@@ -1,0 +1,8 @@
+{
+  "name": "geogenerator",
+  "version": "0.0.1",
+  "description": "Project to help with generating sample or testing geometry.",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
