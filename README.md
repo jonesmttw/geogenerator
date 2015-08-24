@@ -6,6 +6,9 @@ Built on top of [Leaflet](http://leafletjs.com/) and [Twitter Bootstrap](http://
 node dependencies:
 * [Express](http://expressjs.com/4x/api.html)
 
+javascript third party plugins/libraries/links
+* [Leaflet.Draw](https://github.com/Leaflet/Leaflet.draw)
+
 To start the server:
 ```javascript
 node app

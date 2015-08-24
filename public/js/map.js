@@ -2,6 +2,8 @@ var auth;
 var urlroot = location.protocol + '//' + location.host + '/';
 var map;
 
+var drawcontrol, drawitems;
+
 $(function(){
 	$.get(urlroot + 'auth', function(data){
 		auth = data;
@@ -25,4 +27,30 @@ function generateMap(){
 		    token: auth.token
 		}).addTo(map);
 	}
+
+	drawitems = new L.FeatureGroup();
+	map.addLayer(drawitems);
+
+	L.drawLocal.draw.toolbar.buttons.rectangle = 'Draw Bounding Box';
+	
+	// creating the draw control
+	// for now just allowing a bounding box square for the geometry to be generated within
+	drawcontrol = new L.Control.Draw({
+		draw: { 
+			marker: false,
+			polyline: false,
+			circle: false,
+			polygon: false
+		},
+		edit: {
+			featureGroup: drawitems
+		}
+	});
+	map.addControl(drawcontrol);
+
+	map.on('draw:created', function(e){
+		map.addLayer(e.layer);
+	});
+
+
 }
