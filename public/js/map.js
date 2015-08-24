@@ -12,7 +12,7 @@ $(function(){
 function generateMap(){
 	map =  L.map('lmap').setView([38.935085, -43.422855], 4);
 
-	if(!auth){
+	if(!auth.mapid || !auth.token){
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 		    maxZoom: 18,
