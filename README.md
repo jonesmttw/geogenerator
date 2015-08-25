@@ -8,6 +8,8 @@ node dependencies:
 
 javascript third party plugins/libraries/links
 * [Leaflet.Draw](https://github.com/Leaflet/Leaflet.draw)
+* [Bootstrap slider](https://github.com/seiyria/bootstrap-slider)
+* [Turfjs](https://github.com/Turfjs/turf)
 
 To start the server:
 ```javascript

@@ -9,3 +9,50 @@ html, body {
 	height: 100%;
 	width: 100%;
 }
+
+#drawOptions {
+	position: absolute;
+    z-index: 2;
+    top: 10px;
+    width: 100%;
+}
+
+#numGeoContainer {
+    width: 50%;
+    padding: 0 5% 0 25%;
+    float: left;
+}
+
+#numGeo {
+	width: 100%;
+}
+
+#geoType {
+    width: 50%;
+    float: left;
+    z-index: 2;
+}
+
+.geo-button {
+	background-image: url('images/spritesheet.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	float: left;
+}
+
+.geo-button.geo-line {
+	background-position: -9px -7px;
+}
+
+.geo-button.geo-poly {
+	background-position: -38px -7px;
+}
+
+.geo-button.geo-point {
+	background-position: -130px -7px;
+}
+
+.btn.group-sm > .btn {
+	height: 14px;
+}

@@ -9,6 +9,13 @@ $(function(){
 		auth = data;
 		generateMap();
 	});
+
+	$('#numGeo').slider({
+		tooltip_position: 'bottom',
+		formatter: function(value) {
+			return 'Current value: ' + value;
+		}
+	});
 });
 
 function generateMap(){

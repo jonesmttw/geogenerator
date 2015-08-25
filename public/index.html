@@ -10,13 +10,27 @@
     <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/leaflet.draw.css" />
+    <link rel="stylesheet" href="/css/bootstrap-slider.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="/js/leaflet.draw.js"></script>
+    <script src="/js/bootstrap-slider.min.js"></script>
+    <script src="/js/turf.min.js"></script>
     <script src="/js/map.js"></script>
 </head>
 <body>
 	<div id="lmap"></div>
+
+    <div id="drawOptions">
+        <div id="numGeoContainer">
+            <input id="numGeo" data-slider-id='numGeo' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>
+        </div>
+        <div id="geoType" class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-default"><i class="geo-button geo-point"></i>Points</button>
+            <button type="button" class="btn btn-default"><i class="geo-button geo-line"></i>Polylines</button>
+            <button type="button" class="btn btn-default"><i class="geo-button geo-poly"></i>Polygons</button>
+        </div>
+    </div>
 </body>
 </html>
