@@ -10,15 +10,15 @@ $(function(){
 		generateMap();
 	});
 
-	$('#numGeo').slider({
+	$('#num-geo').slider({
 		tooltip_position: 'bottom',
 		formatter: function(value) {
 			return 'Current value: ' + value;
 		}
 	});
 
-	$('#geoType .btn').click(function(){
-		$('#geoType .btn.active').removeClass('active');
+	$('#geo-type .btn').click(function(){
+		$('#geo-type .btn.active').removeClass('active');
 		$(this).addClass('active');
 	});
 });

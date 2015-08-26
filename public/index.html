@@ -22,14 +22,22 @@
 <body>
 	<div id="lmap"></div>
 
-    <div id="drawOptions">
-        <div id="numGeoContainer">
-            <input id="numGeo" data-slider-id='numGeo' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>
-        </div>
-        <div id="geoType" class="btn-group btn-group-sm">
-            <button type="button" class="btn btn-default"><i class="geo-button geo-point"></i>Points</button>
-            <button type="button" class="btn btn-default"><i class="geo-button geo-line"></i>Polylines</button>
-            <button type="button" class="btn btn-default"><i class="geo-button geo-poly"></i>Polygons</button>
+    <div id="ontop">
+        <div class="container">
+            <div class="row">
+                <div id="geo-slider" class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <input id="num-geo" data-slider-id='num-geo' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>    
+                </div>
+                <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+                <div id="geo-type" class="btn-group btn-group-sm col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <button type="button" class="btn btn-default"><i class="geo-button geo-point"></i>Points</button>
+                    <button type="button" class="btn btn-default"><i class="geo-button geo-line"></i>Polylines</button>
+                    <button type="button" class="btn btn-default"><i class="geo-button geo-poly"></i>Polygons</button>
+                </div>
+                <div id="geo-draw" class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                    <button type="button" class="btn btn-default btn-sm">Draw!</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
