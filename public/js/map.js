@@ -61,8 +61,6 @@ function generateMap(){
 	map.addControl(drawcontrol);
 
 	map.on('draw:created', function(e){
-		map.addLayer(e.layer);
+		drawitems.addLayer(e.layer);
 	});
-
-
 }
