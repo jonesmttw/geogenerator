@@ -16,6 +16,11 @@ $(function(){
 			return 'Current value: ' + value;
 		}
 	});
+
+	$('#geoType .btn').click(function(){
+		$('#geoType .btn.active').removeClass('active');
+		$(this).addClass('active');
+	});
 });
 
 function generateMap(){
