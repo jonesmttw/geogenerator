@@ -1,6 +1,8 @@
 var auth;
 var urlroot = location.protocol + '//' + location.host + '/';
 var map;
+var randomgeo;
+var geoslider;
 
 var drawcontrol, drawitems;
 
@@ -10,7 +12,7 @@ $(function(){
 		generateMap();
 	});
 
-	$('#num-geo').slider({
+	geoslider = $('#num-geo').slider({
 		tooltip_position: 'bottom',
 		formatter: function(value) {
 			return 'Current value: ' + value;
@@ -20,6 +22,15 @@ $(function(){
 	$('#geo-type .btn').click(function(){
 		$('#geo-type .btn.active').removeClass('active');
 		$(this).addClass('active');
+	});
+
+	$('#btn-draw').click(function(){
+		if(drawitems.length()){
+			var bbox = drawitems.getLayers()[0].getBounds();
+			var geo = turf.random($('#geo-type .btn.active').data('geo'), geoslider.slider('getValue'), { bbox: boundsForTurf(bbox) });
+			if(randomgeo) map.removeLayer(randomgeo);
+			randomgeo = L.geoJson(geo).addTo(map);
+		}
 	});
 });
 
@@ -39,6 +50,9 @@ function generateMap(){
 		    token: auth.token
 		}).addTo(map);
 	}
+
+	// extending the LayerGroup to add length()
+	L.LayerGroup.prototype.length = function() { return this.getLayers().length; }
 
 	drawitems = new L.FeatureGroup();
 	map.addLayer(drawitems);
@@ -63,4 +77,9 @@ function generateMap(){
 	map.on('draw:created', function(e){
 		drawitems.addLayer(e.layer);
 	});
+}
+
+// turf format for random is [w lng, s lat, e lng, n lat]
+function boundsForTurf(bbox){
+	return [bbox._southWest.lng, bbox._southWest.lat, bbox._northEast.lng, bbox._northEast.lat];
 }
