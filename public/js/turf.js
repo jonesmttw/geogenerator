@@ -12224,6 +12224,13 @@ module.exports = function(type, count, options) {
                 options.num_vertices,
                 options.max_radial_length,
                 options.bbox);
+        case 'polyline':
+        case 'polyline':
+            return random.polyline(
+                count,
+                options.num_vertices,
+                options.max_radial_length,
+                options.bbox);
         default:
             throw new Error('Unknown type given: valid options are points and polygons');
     }
@@ -12246,6 +12253,39 @@ module.exports.point = function(count, bbox) {
     for (i = 0; i < count; i++) {
         features.push(feature(bbox ? point(position(bbox)) : point()));
     }
+    return collection(features);
+};
+
+module.exports.polyline = function(count, num_vertices, max_radial_length, bbox) {
+    if (typeof num_vertices !== 'number') num_vertices = 10;
+    if (typeof max_radial_length !== 'number') max_radial_length = 10;
+    var features = [];
+    for (i = 0; i < count; i++) {
+        var vertices = [],
+            circle_offsets = Array.apply(null,
+                new Array(num_vertices + 1)).map(Math.random);
+
+        circle_offsets.forEach(sumOffsets);
+        circle_offsets.forEach(scaleOffsets);
+
+        // center the polygon around something
+        vertices = vertices.map(vertexToCoordinate(position(bbox)));
+        features.push(feature(polyline(vertices)));
+    }
+
+    function sumOffsets(cur, index, arr) {
+        arr[index] = (index > 0) ? cur + arr[index - 1] : cur;
+    }
+
+    function scaleOffsets(cur, index) {
+        cur = cur * 2 * Math.PI / circle_offsets[circle_offsets.length - 1];
+        var radial_scaler = Math.random();
+        vertices.push([
+            radial_scaler * max_radial_length * Math.sin(cur),
+            radial_scaler * max_radial_length * Math.cos(cur)
+        ]);
+    }
+
     return collection(features);
 };
 
@@ -12315,6 +12355,13 @@ function pointInBBBOX() {
 function polygon(coordinates) {
     return {
         type: 'Polygon',
+        coordinates: coordinates
+    };
+}
+
+function polyline(coordinates) {
+    return {
+        type: 'LineString',
         coordinates: coordinates
     };
 }
