@@ -27,7 +27,9 @@ $(function(){
 	$('#btn-draw').click(function(){
 		if(drawitems.length()){
 			var bbox = drawitems.getLayers()[0].getBounds();
-			var geo = turf.random($('#geo-type .btn.active').data('geo'), geoslider.slider('getValue'), { bbox: boundsForTurf(bbox) });
+			var shape = $('#geo-type .btn.active').data('geo');
+			var geo = turf.random(shape, geoslider.slider('getValue'), { bbox: boundsForTurf(bbox), max_verticies: randomNumVerticies(shape, 10) });
+
 			if(randomgeo) map.removeLayer(randomgeo);
 			randomgeo = L.geoJson(geo).addTo(map);
 		}
@@ -58,11 +60,11 @@ function generateMap(){
 	map.addLayer(drawitems);
 
 	L.drawLocal.draw.toolbar.buttons.rectangle = 'Draw Bounding Box';
-	
+
 	// creating the draw control
 	// for now just allowing a bounding box square for the geometry to be generated within
 	drawcontrol = new L.Control.Draw({
-		draw: { 
+		draw: {
 			marker: false,
 			polyline: false,
 			circle: false,
@@ -82,4 +84,12 @@ function generateMap(){
 // turf format for random is [w lng, s lat, e lng, n lat]
 function boundsForTurf(bbox){
 	return [bbox._southWest.lng, bbox._southWest.lat, bbox._northEast.lng, bbox._northEast.lat];
+}
+
+// returns a random number of vertices for the shape
+function randomNumVerticies(shape, max){
+	if(shape == 'point') return 1;
+
+	var min = shape == 'polyline'  ? 2 : 4;
+	return Math.floor(Math.random() * (max - min + 1) + min);
 }
