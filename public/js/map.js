@@ -26,9 +26,19 @@ $(function(){
 
 	$('#btn-draw').click(function(){
 		if(drawitems.length()){
-			var bbox = drawitems.getLayers()[0].getBounds();
-			var shape = $('#geo-type .btn.active').data('geo');
-			var geo = turf.random(shape, geoslider.slider('getValue'), { bbox: boundsForTurf(bbox), max_verticies: randomNumVerticies(shape, 10) });
+			var bbox = boundsToArray(drawitems.getLayers()[0].getBounds()),
+			shape = $('#geo-type .btn.active').data('geo'),
+			geo = turf.random(shape, geoslider.slider('getValue'), { bbox: bbox, max_verticies: randomNumVerticies(shape, 10) });
+			
+			if(shape === 'polyline'){
+				for(var i = 0; i < geo.features.length; i++){
+					geo.features[i].geometry.coordinates = lineclip.polyline(geo.features[i].geometry.coordinates, bbox)[0];
+				}
+			} else if(shape === 'polygons'){
+				for(var i = 0; i < geo.features.length; i++){
+					geo.features[i].geometry.coordinates[0] = lineclip.polygon(geo.features[i].geometry.coordinates[0], bbox);
+				}
+			}
 
 			if(randomgeo) map.removeLayer(randomgeo);
 			randomgeo = L.geoJson(geo).addTo(map);
@@ -54,7 +64,7 @@ function generateMap(){
 	}
 
 	// extending the LayerGroup to add length()
-	L.LayerGroup.prototype.length = function() { return this.getLayers().length; }
+	L.LayerGroup.prototype.length = function() { return this.getLayers().length; };
 
 	drawitems = new L.FeatureGroup();
 	map.addLayer(drawitems);
@@ -81,15 +91,15 @@ function generateMap(){
 	});
 }
 
-// turf format for random is [w lng, s lat, e lng, n lat]
-function boundsForTurf(bbox){
+// format for random is [w lng, s lat, e lng, n lat]
+function boundsToArray(bbox){
 	return [bbox._southWest.lng, bbox._southWest.lat, bbox._northEast.lng, bbox._northEast.lat];
 }
 
 // returns a random number of vertices for the shape
 function randomNumVerticies(shape, max){
-	if(shape == 'point') return 1;
+	if(shape === 'point') return 1;
 
-	var min = shape == 'polyline'  ? 2 : 4;
+	var min = shape === 'polyline'  ? 2 : 4;
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
