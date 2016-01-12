@@ -103,3 +103,11 @@ function randomNumVerticies(shape, max){
 	var min = shape === 'polyline'  ? 2 : 4;
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function exportToGeoJson(){
+	return JSON.stringify(drawitems.toGeoJSON());
+}
+
+function exportToKml(isZipped){
+
+}
