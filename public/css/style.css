@@ -5,9 +5,36 @@ html, body {
 	overflow: hidden;
 }
 
+/* BOOTSTRAP OVERRIDES */
+
+.row { margin : 0; }
+
+.btn-group-sm>.btn, .btn-sm {
+	padding: 6px 10px;
+}
+
+/* END BOOTSTRAP OVERRIDES */
+
+/* CONTENT STYLING */
+
+#header {
+	padding: 7px 0 0 10px;
+}
+
 #lmap {
-	height: 100%;
-	width: 100%;
+	position: absolute;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#search-group {
+	float: left;
+}
+
+#geo-slider {
+	padding-top: 6px;
 }
 
 #num-geo {
@@ -23,25 +50,15 @@ html, body {
 }
 
 .geo-button.geo-line {
-	background-position: -9px -7px;
+	background-position: -9px -5px;
 }
 
 .geo-button.geo-poly {
-	background-position: -38px -7px;
+	background-position: -38px -5px;
 }
 
 .geo-button.geo-point {
-	background-position: -130px -7px;
+	background-position: -130px -5px;
 }
 
-.btn.group-sm > .btn {
-	height: 14px;
-}
-
-#ontop {
-	position: absolute;
-	top: 10px;
-	width: 100%;
-	left: 0;
-	z-index: 2;
-}
+/*  END CONTENT STYLING */
